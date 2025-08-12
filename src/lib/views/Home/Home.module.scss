@@ -1,43 +1,90 @@
 .homeContainer {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgb(16, 20, 23);
+}
+
+@keyframes backgroundShift {
+  0%, 100% {
+    filter: hue-rotate(0deg) brightness(0.9);
+  }
+  33% {
+    filter: hue-rotate(15deg) brightness(1);
+  }
+  66% {
+    filter: hue-rotate(-10deg) brightness(0.85);
+  }
+}
+
+@keyframes floatingBubbles {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-30px) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .inputCard {
-  background: white;
-  padding: 3rem 4rem;
+  background: rgb(16, 20, 23);
+  padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  min-width: 400px;
-  max-width: 600px;
+  border: 1px solid rgb(80, 115, 134);
   width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 .foodInput {
   width: 100%;
-  max-width: 500px;
-  padding: 1rem 1.5rem;
   font-size: 1.2rem;
-  border: 2px solid #e1e5e9;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgb(16, 20, 23);
   border-radius: 8px;
   outline: none;
-  transition: border-color 0.2s ease;
-  text-align: center;
+  transition: all 0.2s ease;
+  resize: none;
+  min-height: 80px;
+  font-family: inherit;
+  line-height: 1.5;
 
   &::placeholder {
-    color: #64748b;
-    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 300;
   }
+}
 
-  &:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  }
+.takePictureButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  width: auto;
+  font-size: 2rem;
 }

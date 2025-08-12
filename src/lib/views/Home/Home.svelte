@@ -16,16 +16,29 @@
 			handleSubmit();
 		}
 	}
+
+	function handleTakePicture() {
+		console.log('Taking picture...');
+		// We'll implement camera functionality later
+	}
 </script>
 
 <div class={styles.homeContainer}>
 	<div class={styles.inputCard}>
-		<input
-			type="text"
-			placeholder="What did you eat?"
+		<textarea
+			placeholder="Describe your meal..."
 			bind:value={foodInput}
 			on:keydown={handleKeydown}
 			class={styles.foodInput}
-		/>
+		></textarea>
+
+		<div class={styles.buttonContainer}>
+			<button
+				class={styles.takePictureButton}
+				on:click={handleTakePicture}
+			>
+				🖼️
+			</button>
+		</div>
 	</div>
 </div>
