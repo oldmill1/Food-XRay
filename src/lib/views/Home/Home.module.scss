@@ -8,29 +8,6 @@
   background: rgb(16, 20, 23);
 }
 
-@keyframes backgroundShift {
-  0%, 100% {
-    filter: hue-rotate(0deg) brightness(0.9);
-  }
-  33% {
-    filter: hue-rotate(15deg) brightness(1);
-  }
-  66% {
-    filter: hue-rotate(-10deg) brightness(0.85);
-  }
-}
-
-@keyframes floatingBubbles {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-30px) scale(1.1);
-    opacity: 0.8;
-  }
-}
-
 .inputSection {
   display: flex;
   flex-direction: column;
@@ -61,7 +38,7 @@
 .foodInput {
   width: 100%;
   font-size: 1.2rem;
-  font-weight: 300;
+  font-weight: 500;
   color: rgba(255, 255, 255, 0.9);
   background: rgb(16, 20, 23);
   border-radius: 8px;
@@ -69,12 +46,12 @@
   transition: all 0.2s ease;
   resize: none;
   min-height: 80px;
-  font-family: inherit;
   line-height: 1.5;
+  font-family: "Monaco", sans-serif !important;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
-    font-weight: 300;
+    font-weight: 500;
   }
 }
 
@@ -82,9 +59,6 @@
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   width: auto;
   font-size: 2rem;
 }
