@@ -2,40 +2,49 @@
 <script lang="ts">
 	import styles from '$lib/views/Home/Home.module.scss';
 	import FoodInputForm from '$lib/components/FoodInputForm/FoodInputForm.svelte';
+	import { ConversationController } from '$lib/controllers/ConversationController';
+	import { onMount } from 'svelte';
 
 	let foodInput = '';
 	let isLoading = false;
 
+	// Create conversation controller instance
+	const conversationController = new ConversationController();
+
+	onMount(() => {
+		// Subscribe to conversation state changes
+		const unsubscribe = conversationController.subscribe((state) => {
+			isLoading = state.isLoading;
+
+			// Log the latest assistant message for now
+			if (state.messages.length > 0) {
+				const latestMessage = state.messages[state.messages.length - 1];
+				if (latestMessage.role === 'assistant') {
+					console.log('OpenAI Response:', latestMessage.content);
+				}
+			}
+
+			// Log any errors
+			if (state.error) {
+				console.error('Conversation Error:', state.error);
+			}
+		});
+
+		// Cleanup subscription on component destroy
+		return unsubscribe;
+	});
+
 	async function handleSubmit(event: CustomEvent<string>) {
 		const message = event.detail;
-		isLoading = true;
 		console.log('Analyzing:', message);
 
-		try {
-			const response = await fetch('/api/chat', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					message: message,
-					model: 'gpt-4o'
-				})
-			});
+		// Send message through controller
+		await conversationController.sendMessage(message);
 
-			const data = await response.json();
-
-			if (data.success) {
-				console.log('OpenAI Response:', data.response);
-				// Clear the input after successful submission
-				foodInput = '';
-			} else {
-				console.error('API Error:', data.error);
-			}
-		} catch (error) {
-			console.error('Request failed:', error);
-		} finally {
-			isLoading = false;
+		// Clear input on successful submission (when not loading anymore)
+		const state = conversationController.getState();
+		if (!state.isLoading && !state.error) {
+			foodInput = '';
 		}
 	}
 
