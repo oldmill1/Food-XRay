@@ -1,0 +1,54 @@
+/* src/lib/components/FoodInputForm/FoodInputForm.module.scss */
+
+.inputCard {
+  background: rgb(16, 20, 23);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgb(80, 115, 134);
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.foodInput {
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgb(16, 20, 23);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  resize: none;
+  min-height: 80px;
+  line-height: 1.5;
+  font-family: "Monaco", sans-serif !important;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+  }
+}
+
+.takePictureButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  width: auto;
+  font-size: 2rem;
+}
+
+.loadingText {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
