@@ -13,7 +13,8 @@
 
 	onMount(() => {
 		// Subscribe to conversation state changes
-		const unsubscribe = conversationController.subscribe((state) => {
+		// Cleanup subscription on component destroy
+		return conversationController.subscribe((state) => {
 			isLoading = state.isLoading;
 
 			// Log the latest assistant message for now
@@ -29,9 +30,6 @@
 				console.error('Conversation Error:', state.error);
 			}
 		});
-
-		// Cleanup subscription on component destroy
-		return unsubscribe;
 	});
 
 	async function handleSubmit(event: CustomEvent<string>) {
